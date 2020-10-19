@@ -1,7 +1,5 @@
-const taskNotesModel = require('../models/taskNotesModel');
-const taskNotesController = require('../controllers/taskNotesController');
-
 const express = require('express');
+const taskNotesController = require('../controllers/taskNotesController');
 
 const router = express.Router();
 
