@@ -1,9 +1,13 @@
 // Imports
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/userRoutes');
 const taskRouter = require('./routes/taskRoutes');
+const taskNotesRouter = require('./routes/taskNotesRoutes');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config.env' });
+
 // Main App
 const app = express();
 
@@ -12,7 +16,7 @@ app.use(express.json());
 
 // MongoDB Connection
 mongoose
-  .connect('mongodb://localhost/taskify', {
+  .connect(process.env.DATABASE_CONNECTION_STRING, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -30,6 +34,9 @@ app.use('/api/v1/user', userRouter);
 
 // Task Router
 app.use('/api/v1/task', taskRouter);
+
+// Task Notes Router
+app.use('/api/v1/taskNotes', taskNotesRouter);
 
 // Main Server
 const server = app.listen(portNumber, () => {
