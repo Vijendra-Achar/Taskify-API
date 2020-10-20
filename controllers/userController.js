@@ -22,8 +22,9 @@ exports.signUpNewUser = async (req, res) => {
 
     const cookieOptions = {
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Expires 30 days from the date of login
-      httpOnly: true,
     };
+
+    newUser.password = undefined;
 
     res.cookie('jwt-auth-token', myJWTtoken, cookieOptions);
 
@@ -68,6 +69,8 @@ exports.loginUser = async (req, res) => {
       expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Expires 30 days from the date of login
       httpOnly: true,
     };
+
+    user.password = undefined;
 
     res.cookie('jwt-auth-token', myJWTtoken, cookieOptions);
 

@@ -5,6 +5,9 @@ const userRouter = require('./routes/userRoutes');
 const taskRouter = require('./routes/taskRoutes');
 const taskNotesRouter = require('./routes/taskNotesRoutes');
 const dotenv = require('dotenv');
+const cors = require('cors');
+
+cookieParser = require('cookie-parser');
 
 dotenv.config({ path: './config.env' });
 
@@ -13,6 +16,12 @@ const app = express();
 
 // Body-Parser
 app.use(express.json());
+
+// CORS Middleware
+app.use(cors());
+
+// Cookie Middleware
+app.use(cookieParser());
 
 // MongoDB Connection
 mongoose
