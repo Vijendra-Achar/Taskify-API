@@ -58,3 +58,24 @@ exports.getTasksAssignedToMe = async (req, res) => {
     });
   }
 };
+
+exports.getTasksCreatedByMe = async (req, res) => {
+  try {
+    const theTasks = await taskModel.find({ createdBy: req.params.myUid });
+
+    res.status(200).json({
+      status: 'success',
+      results: theTasks.length,
+      data: {
+        tasks: theTasks,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      status: 'fail',
+      message: 'Something went wrong',
+    });
+  }
+};

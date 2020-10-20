@@ -1,13 +1,29 @@
 const mongoose = require('mongoose');
 
-const taskNotesSchema = new mongoose.Schema({
-  heading: {
-    type: String,
+const taskNotesSchema = new mongoose.Schema(
+  {
+    heading: {
+      type: String,
+    },
+    notes: {
+      type: String,
+    },
+    taskId: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'task',
+    },
   },
-  notes: {
-    type: String,
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   },
-  taskId: mongoose.Schema.ObjectId,
+);
+
+taskNotesSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'taskId',
+  });
+  next();
 });
 
 const taskNotesModel = mongoose.model('taskNotes', taskNotesSchema);
