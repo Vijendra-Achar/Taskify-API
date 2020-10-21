@@ -38,7 +38,7 @@ exports.signUpNewUser = async (req, res) => {
     console.log(error);
     res.status(400).json({
       status: 'fail',
-      error: error,
+      error: 'User Already Exists',
     });
   }
 };
@@ -110,12 +110,14 @@ exports.getCurrentUser = (req, res) => {
 };
 
 // Get all users for the admin dashboard
-exports.getAllUsers = (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
+    const allEmps = await userModel.find({ role: 'employee' });
+
     res.status(200).json({
       status: 'success',
       data: {
-        user: 'All Users Data',
+        user: allEmps,
       },
     });
   } catch (error) {
