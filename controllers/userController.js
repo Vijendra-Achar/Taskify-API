@@ -92,12 +92,14 @@ exports.loginUser = async (req, res) => {
 };
 
 // Get Curremtly logged-in User
-exports.getCurrentUser = (req, res) => {
+exports.getCurrentUser = async (req, res) => {
   try {
+    const user = await userModel.findOne({ _id: req.params.uid });
+
     res.status(200).json({
       status: 'success',
       data: {
-        user: req.params.uid,
+        user: user,
       },
     });
   } catch (error) {
