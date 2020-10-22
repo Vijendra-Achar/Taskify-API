@@ -79,3 +79,43 @@ exports.getTasksCreatedByMe = async (req, res) => {
     });
   }
 };
+
+exports.getOneTaskById = async (req, res) => {
+  try {
+    const theTask = await taskModel.findOne({ _id: req.params.taskId });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tasks: theTask,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      status: 'fail',
+      message: 'Something went wrong',
+    });
+  }
+};
+
+exports.changeTaskStatus = async (req, res) => {
+  try {
+    const taskToUpdate = await taskModel.findOneAndUpdate({ _id: req.params.taskId }, { completed: req.body.completed });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        taskNote: 'Done',
+      },
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      status: 'fail',
+      message: 'Something went wrong',
+    });
+  }
+};

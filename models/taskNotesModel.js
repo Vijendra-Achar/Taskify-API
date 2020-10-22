@@ -8,6 +8,9 @@ const taskNotesSchema = new mongoose.Schema(
     notes: {
       type: String,
     },
+    writtenBy: {
+      type: String,
+    },
     taskId: {
       type: mongoose.Schema.ObjectId,
       ref: 'task',

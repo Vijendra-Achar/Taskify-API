@@ -1,3 +1,4 @@
+const taskModel = require('../models/taskModel');
 const taskNotesModel = require('../models/taskNotesModel');
 
 exports.getAllNotes = async (req, res) => {
@@ -27,6 +28,7 @@ exports.createNewNote = async (req, res) => {
       heading: req.body.heading,
       notes: req.body.notes,
       taskId: req.params.taskId,
+      writtenBy: req.body.writtenBy,
     });
 
     res.status(200).json({
