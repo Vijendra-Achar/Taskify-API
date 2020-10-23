@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.DATABASE_CONNECTION_STRING, {
+  .connect(`mongodb+srv://Vijendra:0yw8KvFerFuqtnB7@cluster0.s4zcs.mongodb.net/taskify?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,

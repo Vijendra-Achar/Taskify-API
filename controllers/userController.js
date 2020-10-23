@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 
 // Sign JWT Token
 const signJWTToken = (id) => {
-  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+  return jwt.sign({ id: id }, 'Taskify_is_a_great_app', {
+    expiresIn: '30d',
   });
 };
 
