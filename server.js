@@ -9,7 +9,7 @@ const cors = require('cors');
 
 cookieParser = require('cookie-parser');
 
-dotenv.config({ path: './config.env' });
+// dotenv.config({ path: './config.env' });
 
 // Main App
 const app = express();
@@ -36,8 +36,6 @@ mongoose
     console.log('Mongo DB Connection Failed 💥', err);
   });
 
-const portNumber = process.env.PORT || 5000;
-
 // User Router
 app.use('/api/v1/user', userRouter);
 
@@ -46,6 +44,8 @@ app.use('/api/v1/task', taskRouter);
 
 // Task Notes Router
 app.use('/api/v1/taskNotes', taskNotesRouter);
+
+const portNumber = process.env.PORT || 5000;
 
 // Main Server
 const server = app.listen(portNumber, () => {
