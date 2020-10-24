@@ -19,6 +19,7 @@ exports.createTasks = async (req, res) => {
       description: req.body.description,
       deadline: new Date(req.body.deadline),
       createdBy: req.params.createdBy,
+      totalStages: req.params.totalStages,
       assignedTo: req.params.assignedTo,
     });
 
@@ -102,7 +103,10 @@ exports.getOneTaskById = async (req, res) => {
 
 exports.changeTaskStatus = async (req, res) => {
   try {
-    const taskToUpdate = await taskModel.findOneAndUpdate({ _id: req.params.taskId }, { completed: req.body.completed });
+    const taskToUpdate = await taskModel.findOneAndUpdate(
+      { _id: req.params.taskId },
+      { completed: req.body.completed },
+    );
 
     res.status(200).json({
       status: 'success',
