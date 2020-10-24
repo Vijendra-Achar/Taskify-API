@@ -15,6 +15,14 @@ const taskSchema = new mongoose.Schema(
     deadline: {
       type: Date,
     },
+    totalStages: {
+      type: Number,
+    },
+    percentageOfTaskCompleted: {
+      type: Number,
+      max: 100,
+      min: 0,
+    },
     createdBy: {
       type: mongoose.Schema.ObjectId,
       ref: 'user',
