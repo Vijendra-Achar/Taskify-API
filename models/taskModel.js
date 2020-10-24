@@ -22,6 +22,7 @@ const taskSchema = new mongoose.Schema(
       type: Number,
       max: 100,
       min: 0,
+      default: 0,
     },
     createdBy: {
       type: mongoose.Schema.ObjectId,
