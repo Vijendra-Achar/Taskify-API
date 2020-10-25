@@ -15,14 +15,10 @@ const taskSchema = new mongoose.Schema(
     deadline: {
       type: Date,
     },
-    totalStages: {
-      type: Number,
-    },
-    percentageOfTaskCompleted: {
-      type: Number,
-      max: 100,
-      min: 0,
-      default: 0,
+    allStages: {
+      type: String,
+      enum: ['start', 'begun', 'intermediate', 'finished'],
+      default: 'start',
     },
     createdBy: {
       type: mongoose.Schema.ObjectId,

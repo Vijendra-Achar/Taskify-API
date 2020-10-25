@@ -19,7 +19,7 @@ exports.createTasks = async (req, res) => {
       description: req.body.description,
       deadline: new Date(req.body.deadline),
       createdBy: req.params.createdBy,
-      totalStages: req.body.totalStages,
+      allStages: req.body.allStages,
       assignedTo: req.params.assignedTo,
     });
 
