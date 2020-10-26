@@ -13,4 +13,6 @@ router.route('/createTask/:createdBy/:assignedTo').post(tasksController.createTa
 
 router.route('/changeTaskStatus/:taskId').patch(tasksController.changeTaskStatus);
 
+router.route('/updateTaskPercentage/:taskId').patch(tasksController.updateTaskPercentage);
+
 module.exports = router;

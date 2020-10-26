@@ -18,7 +18,7 @@ const taskSchema = new mongoose.Schema(
     percentageOfCompletion: {
       type: Number,
       min: 0,
-      max: 100,
+      max: [100, 'The Percentage value should be below hundred'],
       default: 0,
     },
     createdBy: {

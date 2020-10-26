@@ -123,3 +123,32 @@ exports.changeTaskStatus = async (req, res) => {
     });
   }
 };
+
+exports.updateTaskPercentage = async (req, res) => {
+  try {
+    if (req.body.percentageOfCompletion > 100) {
+      return res.status(500).json({
+        status: 'fail',
+        message: 'Percentage Value should be below 100',
+      });
+    }
+    const taskPercentage = await taskModel.findOneAndUpdate(
+      { _id: req.params.taskId },
+      { percentageOfCompletion: req.body.percentageOfCompletion },
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        update: 'Done',
+      },
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      status: 'fail',
+      message: 'Something went wrong',
+    });
+  }
+};
