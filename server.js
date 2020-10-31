@@ -9,7 +9,7 @@ const cors = require('cors');
 
 cookieParser = require('cookie-parser');
 
-// dotenv.config({ path: './config.env' });
+dotenv.config({ path: './config.env' });
 
 // Main App
 const app = express();
@@ -24,8 +24,9 @@ app.use(cors());
 app.use(cookieParser());
 
 // MongoDB Connection
+const dbURL = process.env.DATABASE_CONNECTION_STRING.replace('<DATABASE_NAME>', process.env.DATABASE_NAME);
 mongoose
-  .connect(`mongodb+srv://Vijendra:0yw8KvFerFuqtnB7@cluster0.s4zcs.mongodb.net/taskify?retryWrites=true&w=majority`, {
+  .connect(dbURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
